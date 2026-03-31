@@ -1,98 +1,346 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: black;
-  color: rgba(255, 255, 255, 0.9);
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+  color: rgba(255, 255, 255, 0.95);
+  min-height: 100vh;
 }
 
 .container {
-  max-width: 800px;
-  margin: 50px auto;
-  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+  width: 100%;
 }
 
 h1 {
   text-align: center;
-  font-size: 2.5rem;
-  text-shadow: 0 0 20px #189e8b;
+  font-size: 2rem;
+  color: #00d4aa;
+  text-shadow: 0 0 15px #00d4aa;
+  margin: 20px 0 30px;
+  letter-spacing: 1px;
+  font-weight: 600;
 }
 
+h2 {
+  font-size: 1.3rem;
+  color: #00d4aa;
+  margin: 30px 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #00d4aa;
+}
+
+/* Form Styles */
 #todo-form {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto;
   gap: 10px;
   margin-bottom: 30px;
+  width: 100%;
 }
 
 input {
-  flex: 1;
-  padding: 12px;
-  font-size: 1.2rem;
-  border-radius: 10px;
-  border: none;
+  grid-column: 1;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 2px solid #00d4aa;
   outline: none;
-  background: transparent;
-  color: #189e8b;
-  box-shadow: 0 0 10px #189e8b;
+  background: rgba(0, 212, 170, 0.08);
+  color: #00d4aa;
+  transition: all 0.3s ease;
 }
 
-button {
-  padding: 10px 20px;
-  background: #189e8b;
+input::placeholder {
+  color: rgba(0, 212, 170, 0.6);
+}
+
+input:focus {
+  background: rgba(0, 212, 170, 0.15);
+  border-color: #fff;
+  box-shadow: 0 0 15px rgba(0, 212, 170, 0.5);
+}
+
+#submit-btn {
+  grid-column: 2;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #00d4aa, #00a884);
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
   color: white;
-  box-shadow: 0 0 10px #189e8b;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
 }
 
-button:hover {
-  background: #0f6e5a;
+#submit-btn:hover {
+  background: linear-gradient(135deg, #00e6bb, #00c99a);
+  box-shadow: 0 6px 20px rgba(0, 212, 170, 0.5);
+  transform: translateY(-2px);
 }
 
+#submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Todo List */
 ul {
   list-style: none;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 li {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 15px;
-  padding-right: 70px;
-  margin-bottom: 15px;
-  border-bottom: 2px solid white;
-  color: #189e8b;
-  box-shadow: 0 0 10px #189e8b;
-  transition: 0.2s;
-  position: relative;
-}
-
-li span {
-  flex: 1 1 auto;
-  word-break: break-word;
-  overflow-wrap: break-word;
-  min-width: 0;
-}
-
-li .delete-btn {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  padding: 14px 16px;
+  background: rgba(0, 212, 170, 0.08);
+  border-left: 4px solid #00d4aa;
+  border-radius: 6px;
+  color: #00d4aa;
+  transition: all 0.3s ease;
+  min-height: 50px;
 }
 
 li:hover {
-  transform: scale(1.02);
+  background: rgba(0, 212, 170, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 212, 170, 0.3);
+  transform: translateX(4px);
+}
+
+li span {
+  flex: 1;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  padding-right: 12px;
+}
+
+li span:hover {
+  color: #fff;
+}
+
+.delete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: #ff1744;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  background: #ff5277;
+  box-shadow: 0 4px 12px rgba(255, 23, 68, 0.5);
+  transform: scale(1.1);
+}
+
+.delete-btn:active {
+  transform: scale(0.95);
 }
 
 .completed span {
   text-decoration: line-through;
-  opacity: 0.6;
+  opacity: 0.5;
+  color: #888;
 }
 
-.delete-btn {
-  background: crimson;
+/* Responsive Design */
+@media (max-width: 640px) {
+  .container {
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin: 16px 0 24px;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    margin: 24px 0 16px;
+  }
+
+  #todo-form {
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  input {
+    padding: 10px 12px;
+    font-size: 0.95rem;
+  }
+
+  #submit-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  li {
+    padding: 12px 14px;
+    min-height: 48px;
+  }
+
+  li span {
+    font-size: 0.95rem;
+    padding-right: 8px;
+  }
+
+  .delete-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    margin: 12px 0 20px;
+  }
+
+  h2 {
+    font-size: 1rem;
+    margin: 20px 0 14px;
+  }
+
+  #todo-form {
+    grid-template-columns: 1fr auto;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  input {
+    padding: 9px 10px;
+    font-size: 0.9rem;
+  }
+
+  #submit-btn {
+    padding: 9px 16px;
+    font-size: 0.85rem;
+  }
+
+  li {
+    padding: 10px 12px;
+    min-height: 46px;
+    gap: 8px;
+  }
+
+  li span {
+    font-size: 0.9rem;
+    padding-right: 6px;
+  }
+
+  .delete-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+  }
+
+  #todo-form {
+    gap: 8px;
+    margin-bottom: 25px;
+  }
+
+  input {
+    min-width: 120px;
+  }
+
+  li {
+    padding: 12px;
+    padding-right: 45px;
+    margin-bottom: 12px;
+  }
+}
+
+/* Small phones (below 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+    margin-top: 5px;
+  }
+
+  h1 {
+    margin: 15px 0 20px 0;
+  }
+
+  h2 {
+    margin: 20px 0 10px 0;
+  }
+
+  #todo-form {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  input {
+    min-width: unset;
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  li {
+    padding: 10px 8px;
+    padding-right: 38px;
+    margin-bottom: 10px;
+    gap: 6px;
+  }
+
+  li span {
+    font-size: 0.9rem;
+  }
+
+  li .delete-btn {
+    padding: 4px 6px;
+    right: 4px;
+    font-size: 0.75rem;
+    min-width: 30px;
+    text-align: center;
+  }
+}
+
+/* Large screens (above 1024px) */
+@media (min-width: 1024px) {
+  .container {
+    padding: 30px;
+    margin-top: 30px;
+  }
+
+  li:hover {
+    transform: scale(1.03);
+  }
 }
