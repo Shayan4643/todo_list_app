@@ -28,7 +28,6 @@ function displayTodos() {
     const span = document.createElement("span");
     span.textContent = todo.text;
 
-    // Toggle complete
     span.addEventListener("click", () => {
       todos[index].completed = !todos[index].completed;
       saveTodos();
